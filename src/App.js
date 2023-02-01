@@ -1,9 +1,12 @@
 import "./App.css";
+import AppBar from "./components/Appbar";
+import Student from "./components/Student";
 
 function App() {
   return (
     <div className="App">
-      <h1>This is my new application</h1>
+      <AppBar />
+      <Student />
     </div>
   );
 }
