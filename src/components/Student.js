@@ -2,9 +2,9 @@
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { Container } from "@mui/system";
-import { Paper } from "@mui/material";
+import { Paper, Button } from "@mui/material";
 import React, { useState } from "react";
-
+import SendIcon from "@mui/icons-material/Send";
 export default function Student() {
   const PaperStyle = {
     padding: "50px 20px",
@@ -14,6 +14,20 @@ export default function Student() {
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
   const [message, setMessage] = useState("");
+  //creat this function to handle our output
+  const handleClick = (e) => {
+    e.preventDefault();
+    const Student = { name, address, message };
+    console.log(Student);
+    // connect database
+    fetch("http://localhost:8072/student/add", {
+      method: "POST",
+      headers: { "content-Type": "application/json" },
+      body: JSON.stringify(Student),
+    }).then(() => {
+      console.log("New Student added");
+    });
+  };
   return (
     <Container>
       <Paper elevation={3} style={PaperStyle}>
@@ -56,9 +70,17 @@ export default function Student() {
           />
         </Box>
         {/* call the state here */}
-        {name}
+        <Button
+          variant="contained"
+          endIcon={<SendIcon />}
+          color="secondary"
+          onClick={handleClick}
+        >
+          SUBMIT
+        </Button>
+        {/* {name}
         {address}
-        {message}
+        {message} */}
       </Paper>
     </Container>
   );
