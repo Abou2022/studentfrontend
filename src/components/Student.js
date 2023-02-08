@@ -74,9 +74,18 @@ export default function Student() {
           variant="contained"
           endIcon={<SendIcon />}
           color="secondary"
+          sx={{ m: 1 }}
           onClick={handleClick}
         >
           SUBMIT
+        </Button>
+        <Button
+          variant="contained"
+          endIcon={<SendIcon />}
+          color="primary"
+          // onClick={}
+        >
+          VIEW ALL POST
         </Button>
         {/* {name}
         {address}
