@@ -79,11 +79,11 @@ export default function Student() {
             onChange={(e) => setAddress(e.target.value)}
           />
           <TextField
-            required
-            id="outlined-basic"
-            label="Student Message"
-            // variant="outlined"
+            id="outlined-multiline-static"
+            label="Multiline"
             multiline
+            rows={4}
+            defaultValue="Default Value"
             fullWidth
             value={message}
             onChange={(e) => setMessage(e.target.value)}
@@ -116,10 +116,17 @@ export default function Student() {
         {students.map((student) => (
           <Paper
             elevation={6}
-            style={{ margin: "10px", padding: "15px", textAlign: "left" }}
+            style={{
+              margin: "10px",
+              padding: "15px",
+              textAlign: "left",
+              background: "#4B9CD3",
+            }}
             key={student.id}
           >
-            Id: {student.id} <br />
+            <h3 style={{ margin: "0px" }}>
+              Id: {student.id} <br />
+            </h3>
             Name: {student.name} <br />
             Message:{student.message}
           </Paper>
