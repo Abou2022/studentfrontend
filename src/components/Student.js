@@ -5,6 +5,9 @@ import { Container } from "@mui/system";
 import { Paper, Button } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import SendIcon from "@mui/icons-material/Send";
+// import { makeStyles, useStyles } from "tss-react/mui";
+// import { makeStyles, useStyles } from "@material-ui/core/styles";
+
 export default function Student() {
   const PaperStyle = {
     padding: "50px 20px",
@@ -15,6 +18,8 @@ export default function Student() {
   const [address, setAddress] = useState("");
   const [message, setMessage] = useState("");
   const [students, setStudents] = useState([]);
+  // const classes = useStyles();
+  // const { classes, cx } = useStyles({ color });
   //creat this function to handle our output
   const handleClick = (e) => {
     e.preventDefault();
@@ -77,7 +82,8 @@ export default function Student() {
             required
             id="outlined-basic"
             label="Student Message"
-            variant="outlined"
+            // variant="outlined"
+            multiline
             fullWidth
             value={message}
             onChange={(e) => setMessage(e.target.value)}
@@ -107,14 +113,14 @@ export default function Student() {
       </Paper>
       <h1 style={{ color: "blue" }}>Student</h1>
       <Paper elevation={4} style={PaperStyle}>
-        {students.map((Student) => (
+        {students.map((student) => (
           <Paper
             elevation={6}
             style={{ margin: "10px", padding: "15px", textAlign: "left" }}
             key={student.id}
           >
-            Id: {student.id}
-            Name: {student.name}
+            Id: {student.id} <br />
+            Name: {student.name} <br />
             Message:{student.message}
           </Paper>
         ))}
