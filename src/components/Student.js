@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { Container } from "@mui/system";
 import { Paper, Button } from "@mui/material";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import SendIcon from "@mui/icons-material/Send";
 export default function Student() {
   const PaperStyle = {
@@ -14,6 +14,7 @@ export default function Student() {
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
   const [message, setMessage] = useState("");
+  const [students, setStudents] = useState([]);
   //creat this function to handle our output
   const handleClick = (e) => {
     e.preventDefault();
@@ -28,6 +29,16 @@ export default function Student() {
       console.log("New Student added");
     });
   };
+
+  //react hook
+  useEffect(() => {
+    fetch("http://localhost:8072/student/getAll")
+      .then((res) => res.json())
+      .then((result) => {
+        setStudents(result);
+      });
+  }, []);
+
   return (
     <Container>
       <Paper elevation={3} style={PaperStyle}>
@@ -44,6 +55,7 @@ export default function Student() {
           autoComplete="off"
         >
           <TextField
+            required
             id="outlined-basic"
             label="Student Name"
             variant="outlined"
@@ -53,6 +65,7 @@ export default function Student() {
             onChange={(e) => setName(e.target.value)}
           />
           <TextField
+            required
             id="outlined-basic"
             label="Student Address"
             variant="outlined"
